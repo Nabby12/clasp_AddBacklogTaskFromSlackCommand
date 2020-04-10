@@ -91,13 +91,13 @@ function AddTaskToBacklog(arg: string, trgtKey: string, trgtId: string) {
             if (!isNaN(trgtTime)) {
                 if (trgtTime.length !=4 || trgtTime.substring(0, 2) > 23 || trgtTime.substring(2, 4) > 59) {
                     PostMessageToSlack(ERROR_MESSAGE_FOR_PLAN);
-                    return ContentService.createTextOutput();
+                    return;
                 }
             }
         }
         if (trgtDateStr === '') {
-            PostMessageToSlack(trgtDateStr + 2 + ERROR_MESSAGE_FOR_PLAN);
-            return ContentService.createTextOutput();
+            PostMessageToSlack(ERROR_MESSAGE_FOR_PLAN);
+            return;
         }
     // task の時は yyyymmdd 形式で日付があるかを判定（「日付」は省略可）
     } else if (trgtKey === TASKKEY_TASK) {
